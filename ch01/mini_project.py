@@ -149,10 +149,6 @@ while True:
     if ball2_y <= 10:
         ball2_speed = 7
 
-    # ## 스케일팩터 이미지 크기를 조절하는데 사용,
-    ## 작은 값은 주먹을 자세히 검출,큰 값은 정확도가 떨어짐
-    #### minNeighbors 주먹을 검출하기 위한 이웃 사각형의 개수, 값이 작을 수록 많은 주먹 검출
-    ## 값이 커질수록 정확한 주먹만 검출
     # 주먹 감지
     fist = fist_cascade.detectMultiScale(frame, scaleFactor=1.5, minNeighbors=4)
     # 손바닥 감지
@@ -173,7 +169,28 @@ while True:
             number = 1
         if number2 > 1:
             number2 = 1
-
+        if len(fist) > 0:
+            cv2.putText(
+                frame,
+                f"Left Move",
+                (20, 40),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                1,
+                (255, 0, 0),
+                1,
+                cv2.LINE_AA,
+            )
+        if len(palm) > 0:
+            cv2.putText(
+                frame,
+                f"right Move",
+                (450, 40),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                1,
+                (0, 255, 255),
+                1,
+                cv2.LINE_AA,
+            )
         basket_x = max(
             0,
             min(
