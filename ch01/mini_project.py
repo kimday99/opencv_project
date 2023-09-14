@@ -191,6 +191,7 @@ while True:
                 1,
                 cv2.LINE_AA,
             )
+
         basket_x = max(
             0,
             min(
